@@ -1,7 +1,6 @@
-import QuizPage from './components/pages/quizPage/quizPage';
+import AppController from './appController';
+import AppModel from './appModel';
+import AppView from './appView';
 
-const root = document.getElementById('root');
-
-if (root) {
-  root.append(new QuizPage().container);
-}
+const app = new AppController(new AppModel(), new AppView());
+console.log(app);
