@@ -11,6 +11,10 @@ class NextQuestionButton {
     });
   }
 
+  bindEventHandler = (handler: () => void) => {
+    this.container.addEventListener('click', handler);
+  };
+
   get() {
     return this.container;
   }

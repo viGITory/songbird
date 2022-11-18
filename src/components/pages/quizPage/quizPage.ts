@@ -10,35 +10,26 @@ import createElement from '../../../utils/createElement';
 class QuizPage {
   container;
 
-  quizScore;
-
-  quizCategories;
-
-  quizQuestion;
-
-  quizAnswers;
-
-  birdCard;
-
-  nextQuestionButton;
+  components;
 
   constructor() {
     this.container = createElement({ tagName: 'div', attributes: { class: 'quiz-page' } });
-
-    this.quizScore = new QuizScore();
-    this.quizCategories = new QuizCategories();
-    this.quizQuestion = new QuizQuestion();
-    this.quizAnswers = new QuizAnswers();
-    this.birdCard = new BirdCard();
-    this.nextQuestionButton = new NextQuestionButton();
+    this.components = {
+      quizScore: new QuizScore(),
+      quizCategories: new QuizCategories(),
+      quizQuestion: new QuizQuestion(),
+      quizAnswers: new QuizAnswers(),
+      birdCard: new BirdCard(),
+      nextQuestionButton: new NextQuestionButton(),
+    };
 
     this.container.append(
-      this.quizScore.container,
-      this.quizCategories.container,
-      this.quizQuestion.container,
-      this.quizAnswers.container,
-      this.birdCard.container,
-      this.nextQuestionButton.container
+      this.components.quizScore.container,
+      this.components.quizCategories.container,
+      this.components.quizQuestion.container,
+      this.components.quizAnswers.container,
+      this.components.birdCard.container,
+      this.components.nextQuestionButton.container
     );
   }
 

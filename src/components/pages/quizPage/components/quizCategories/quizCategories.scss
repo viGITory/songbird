@@ -1,0 +1,11 @@
+.quiz-categories {
+
+  &__item {
+
+    &--active {
+      color: #fff;
+
+      background-color: #000;
+    }
+  }
+}

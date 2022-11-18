@@ -12,6 +12,10 @@ class AppView {
 
     this.root.append(this.quizPage.container);
   }
+
+  renderCategories = (handler: () => string[]) => {
+    this.quizPage.components.quizCategories.render(handler());
+  };
 }
 
 export default AppView;

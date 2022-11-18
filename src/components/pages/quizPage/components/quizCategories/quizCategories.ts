@@ -1,3 +1,5 @@
+import './quizCategories.scss';
+
 import createElement from '../../../../../utils/createElement';
 
 class QuizCategories {
@@ -5,20 +7,30 @@ class QuizCategories {
 
   constructor() {
     this.container = createElement({ tagName: 'ul', attributes: { class: 'quiz-categories' } });
-
-    this.render();
   }
 
-  render = () => {
-    for (let i = 1; i < 7; i += 1) {
-      const answer = createElement({
+  render = (categories: string[]) => {
+    categories.forEach((item, index) => {
+      const category = createElement({
         tagName: 'li',
         attributes: { class: 'quiz-categories__item' },
-        children: [`Категория ${i}`],
+        children: [item],
       });
 
-      this.container.append(answer);
-    }
+      if (!index) {
+        category.classList.add('quiz-categories__item--active');
+      }
+
+      this.container.append(category);
+    });
+  };
+
+  highlightCurrentCategory = (categoryNum: number) => {
+    [...this.container.children].forEach((child, index) =>
+      index === categoryNum
+        ? child.classList.add('quiz-categories__item--active')
+        : child.classList.remove('quiz-categories__item--active')
+    );
   };
 
   get() {
