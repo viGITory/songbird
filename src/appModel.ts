@@ -10,6 +10,7 @@ class AppModel {
   constructor() {
     this.birdsData = birdsData;
     this.appState = {
+      quizScore: 0,
       quizCategories: this.birdsData.map((item) => item.category),
       currentQuizCategoryNum: 0,
       currentQuizQuestionNum: getRandomInteger(0, 5),
@@ -59,6 +60,14 @@ class AppModel {
 
   setHasCorrectAnswer = () => {
     this.appState.hasCorrectAnswer = true;
+  };
+
+  countQuizScore = () => {
+    const maxAnswers = 6;
+
+    if (this.appState.hasCorrectAnswer || this.appState.answerCount === maxAnswers) return;
+
+    this.appState.quizScore += maxAnswers - this.appState.answerCount;
   };
 }
 

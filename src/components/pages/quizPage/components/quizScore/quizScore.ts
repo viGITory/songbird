@@ -11,6 +11,10 @@ class QuizScore {
     });
   }
 
+  updateScore = (score: number) => {
+    this.container.textContent = `Счет: ${score}`;
+  };
+
   get() {
     return this.container;
   }
