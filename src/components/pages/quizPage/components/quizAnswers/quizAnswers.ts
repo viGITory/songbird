@@ -1,3 +1,5 @@
+import './quizAnswers.scss';
+
 import createElement from '../../../../../utils/createElement';
 import clearContainer from '../../../../../utils/clearContainer';
 
@@ -6,22 +8,45 @@ class QuizAnswers {
 
   constructor() {
     this.container = createElement({ tagName: 'ul', attributes: { class: 'quiz-answers' } });
-
-    this.render();
   }
 
-  render = () => {
+  render = (answers: string[]) => {
     clearContainer(this.container);
 
-    for (let i = 1; i < 7; i += 1) {
+    answers.forEach((item) => {
       const answer = createElement({
         tagName: 'li',
         attributes: { class: 'quiz-answers__item' },
-        children: [`Вариант ответа ${i}`],
+        children: [item],
       });
 
       this.container.append(answer);
-    }
+    });
+  };
+
+  bindEventHandler = (handler: (index: number) => void) => {
+    [...this.container.children].forEach((child, index) => {
+      child.addEventListener('click', () => {
+        handler(index);
+      });
+    });
+  };
+
+  markSuccessAnswer = (answerNum: number) => {
+    [...this.container.children].forEach((child, index) => {
+      if (index === answerNum) {
+        child.classList.remove('quiz-answers__item--error');
+        child.classList.add('quiz-answers__item--success');
+      }
+    });
+  };
+
+  markErrorAnswer = (answerNum: number) => {
+    [...this.container.children].forEach((child, index) => {
+      if (index === answerNum) {
+        child.classList.add('quiz-answers__item--error');
+      }
+    });
   };
 
   get() {

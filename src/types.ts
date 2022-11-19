@@ -4,4 +4,13 @@ interface IHTMLElementProps {
   children?: (HTMLElement | string)[];
 }
 
-export { IHTMLElementProps };
+interface IBirdData {
+  id: number;
+  name: string;
+  species: string;
+  description: string;
+  image: string;
+  audio: string;
+}
+
+export { IHTMLElementProps, IBirdData };

@@ -1,3 +1,5 @@
+import { IBirdData } from './types';
+
 import QuizPage from './components/pages/quizPage/quizPage';
 
 class AppView {
@@ -13,8 +15,20 @@ class AppView {
     this.root.append(this.quizPage.container);
   }
 
-  renderCategories = (handler: () => string[]) => {
-    this.quizPage.components.quizCategories.render(handler());
+  renderCategories = (categories: string[], currentCategoryNum: number) => {
+    this.quizPage.components.quizCategories.render(categories, currentCategoryNum);
+  };
+
+  renderQuestion = (handler: () => IBirdData, hasCorrectAnswer: boolean) => {
+    this.quizPage.components.quizQuestion.render(handler(), hasCorrectAnswer);
+  };
+
+  renderAnswers = (handler: () => string[]) => {
+    this.quizPage.components.quizAnswers.render(handler());
+  };
+
+  renderBirdCard = (handler: () => IBirdData, isFirstAnswer: boolean) => {
+    this.quizPage.components.birdCard.render(handler(), isFirstAnswer);
   };
 }
 

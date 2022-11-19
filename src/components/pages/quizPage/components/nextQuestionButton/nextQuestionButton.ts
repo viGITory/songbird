@@ -9,7 +9,17 @@ class NextQuestionButton {
       attributes: { class: 'next-question-button', type: 'button' },
       children: ['Следующий вопрос'],
     });
+
+    this.turnOff();
   }
+
+  turnOn = () => {
+    this.container.removeAttribute('disabled');
+  };
+
+  turnOff = () => {
+    this.container.setAttribute('disabled', '');
+  };
 
   bindEventHandler = (handler: () => void) => {
     this.container.addEventListener('click', handler);
