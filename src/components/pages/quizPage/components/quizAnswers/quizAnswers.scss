@@ -1,17 +1,39 @@
 .quiz-answers {
+  padding: 0.5rem 2rem;
+  list-style: none;
+
+  background-color: #fff;
+  border: 0.1rem solid #e5e5e5;
+  border-radius: 0.3rem;
 
   &__item {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 1.5rem 0;
 
-    &--success {
-      color: #fff;
+    cursor: pointer;
 
-      background-color: #0f0;
+    &:not(:last-child) {
+      border-bottom: 0.1rem solid #e5e5e5;
     }
+  }
 
-    &--error {
-      color: #fff;
+  &__item--success &__indicator {
+    background-color: #00bc8c;
+  }
 
-      background-color: #f00;
-    }
+  &__item--error &__indicator {
+    background-color: #dc143c;
+  }
+
+  &__indicator {
+    width: 1rem;
+    height: 1rem;
+
+    background-color: #e5e5e5;
+    border-radius: 50%;
+
+    transition: background-color 0.2s;
   }
 }

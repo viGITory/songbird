@@ -1,3 +1,5 @@
+import './nextQuestionButton.scss';
+
 import createElement from '../../../../../utils/createElement';
 
 class NextQuestionButton {

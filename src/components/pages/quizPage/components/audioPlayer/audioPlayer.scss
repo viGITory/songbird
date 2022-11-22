@@ -1,0 +1,41 @@
+.audio-player {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+
+  &__button {
+    width: 4rem;
+    height: 4rem;
+
+    font-size: 2.4rem;
+    line-height: 4rem;
+    color: #00bc8c;
+
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+  }
+
+  &__progress,
+  &__progress::-webkit-slider-thumb {
+    appearance: none;
+  }
+
+  &__progress {
+    flex-grow: 1;
+    height: 0.75rem;
+
+    background-color: #e5e5e5;
+    border-radius: 1.75rem;
+
+    &::-webkit-slider-thumb {
+      width: 1.75rem;
+      height: 1.75rem;
+
+      cursor: ew-resize;
+      background-color: #00bc8c;
+      border-radius: 50%;
+    }
+  }
+}

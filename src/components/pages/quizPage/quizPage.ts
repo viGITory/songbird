@@ -1,3 +1,5 @@
+import './quizPage.scss';
+
 import QuizScore from './components/quizScore/quizScore';
 import QuizCategories from './components/quizCategories/quizCategories';
 import QuizQuestion from './components/quizQuestion/quizQuestion';
@@ -23,15 +25,45 @@ class QuizPage {
       nextQuestionButton: new NextQuestionButton(),
     };
 
+    this.render();
+  }
+
+  render = () => {
     this.container.append(
       this.components.quizScore.container,
-      this.components.quizCategories.container,
-      this.components.quizQuestion.container,
-      this.components.quizAnswers.container,
-      this.components.birdCard.container,
-      this.components.nextQuestionButton.container
+      createElement({
+        tagName: 'main',
+        attributes: { class: 'quiz-page__main' },
+        children: [
+          this.components.quizCategories.container,
+          createElement({
+            tagName: 'div',
+            attributes: { class: 'quiz-page__center' },
+            children: [
+              createElement({
+                tagName: 'div',
+                attributes: { class: 'quiz-page__wrapper' },
+                children: [
+                  this.components.quizQuestion.container,
+                  this.components.quizAnswers.container,
+                ],
+              }),
+              createElement({
+                tagName: 'div',
+                attributes: { class: 'quiz-page__card-wrapper' },
+                children: [this.components.birdCard.container],
+              }),
+            ],
+          }),
+          createElement({
+            tagName: 'div',
+            attributes: { class: 'quiz-page__bottom' },
+            children: [this.components.nextQuestionButton.container],
+          }),
+        ],
+      })
     );
-  }
+  };
 
   get() {
     return this.container;

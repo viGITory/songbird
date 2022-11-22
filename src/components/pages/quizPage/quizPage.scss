@@ -1,0 +1,32 @@
+.quiz-page {
+  max-width: 100rem;
+  padding: 0 2rem 2rem;
+  margin: 0 auto;
+
+  background-color: #f5f5f5;
+
+  &__center,
+  &__wrapper {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__center {
+    flex: 50%;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+  }
+
+  &__wrapper,
+  &__card-wrapper {
+    flex: 1;
+  }
+
+  &__wrapper {
+    flex-direction: column;
+  }
+
+  &__bottom {
+    text-align: right;
+  }
+}

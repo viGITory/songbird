@@ -1,3 +1,5 @@
+import './audioPlayer.scss';
+
 import createElement from '../../../../../utils/createElement';
 import clearContainer from '../../../../../utils/clearContainer';
 
@@ -23,7 +25,13 @@ class AudioPlayer {
     });
     const progressBar = createElement({
       tagName: 'input',
-      attributes: { class: 'audio-player__input', type: 'range', value: '0', min: '0', max: '100' },
+      attributes: {
+        class: 'audio-player__progress',
+        type: 'range',
+        value: '0',
+        min: '0',
+        max: '100',
+      },
     });
     const currentTime = createElement({
       tagName: 'span',

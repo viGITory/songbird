@@ -17,7 +17,10 @@ class QuizAnswers {
       const answer = createElement({
         tagName: 'li',
         attributes: { class: 'quiz-answers__item' },
-        children: [item],
+        children: [
+          createElement({ tagName: 'span', attributes: { class: 'quiz-answers__indicator' } }),
+          item,
+        ],
       });
 
       this.container.append(answer);

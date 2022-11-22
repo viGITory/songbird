@@ -1,11 +1,32 @@
 .quiz-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  list-style: none;
+
+  background-color: #fff;
+  border: 0.1rem solid #e5e5e5;
 
   &__item {
+    flex: 1;
+    padding: 0.5rem;
+
+    text-align: center;
+
+    &::first-letter {
+      font-family: "Marck Script", cursive;
+      font-size: 2.4rem;
+      color: #00bc8c;
+    }
 
     &--active {
-      color: #fff;
+      background-color: #00bc8c;
 
-      background-color: #000;
+      &,
+      &::first-letter {
+        color: #fff;
+      }
     }
   }
 }

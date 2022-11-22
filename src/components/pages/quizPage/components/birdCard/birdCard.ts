@@ -1,3 +1,5 @@
+import './birdCard.scss';
+
 import { IBirdData } from '../../../../../types';
 
 import AudioPlayer from '../audioPlayer/audioPlayer';
@@ -22,12 +24,15 @@ class BirdCard {
       const cardInstruction = createElement({
         tagName: 'p',
         attributes: { class: 'bird-card__instruction' },
-        children: ['Послушайте плеер. Выберите птицу из списка'],
+        children: [
+          createElement({ tagName: 'p', children: ['Послушайте плеер.'] }),
+          createElement({ tagName: 'p', children: ['Выберите птицу из списка'] }),
+        ],
       });
 
       this.container.append(cardInstruction);
     } else {
-      const cardIamge = createElement({
+      const cardImage = createElement({
         tagName: 'img',
         attributes: { class: 'bird-card__image', src: birdData.image, alt: birdData.name },
       });
@@ -48,7 +53,7 @@ class BirdCard {
       });
 
       this.container.append(
-        cardIamge,
+        cardImage,
         cardTitle,
         cardSubtitle,
         this.audioPlayer.container,
