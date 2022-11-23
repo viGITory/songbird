@@ -51,7 +51,8 @@ class AppController {
       this.view.quizPage.components.nextQuestionButton.turnOn();
       this.view.quizPage.components.quizAnswers.markSuccessAnswer(answerNum);
 
-      this.view.quizPage.components.quizScore.updateScore(this.model.appState.quizScore);
+      this.view.quizPage.components.header.score.updateScore(this.model.appState.quizScore);
+
       this.view.renderQuestion(
         this.model.getQuizQuestionData,
         this.model.appState.hasCorrectAnswer

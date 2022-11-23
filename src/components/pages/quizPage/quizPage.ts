@@ -1,6 +1,6 @@
 import './quizPage.scss';
 
-import QuizScore from './components/quizScore/quizScore';
+import Header from '../../common/header/header';
 import QuizCategories from './components/quizCategories/quizCategories';
 import QuizQuestion from './components/quizQuestion/quizQuestion';
 import QuizAnswers from './components/quizAnswers/quizAnswers';
@@ -17,7 +17,7 @@ class QuizPage {
   constructor() {
     this.container = createElement({ tagName: 'div', attributes: { class: 'quiz-page' } });
     this.components = {
-      quizScore: new QuizScore(),
+      header: new Header(),
       quizCategories: new QuizCategories(),
       quizQuestion: new QuizQuestion(),
       quizAnswers: new QuizAnswers(),
@@ -30,7 +30,7 @@ class QuizPage {
 
   render = () => {
     this.container.append(
-      this.components.quizScore.container,
+      this.components.header.container,
       createElement({
         tagName: 'main',
         attributes: { class: 'quiz-page__main' },
