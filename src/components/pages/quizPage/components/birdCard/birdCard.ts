@@ -19,6 +19,7 @@ class BirdCard {
 
   render = (birdData: IBirdData, isFirstAnswer: boolean) => {
     clearContainer(this.container);
+    this.audioPlayer.audio.pause();
 
     if (isFirstAnswer) {
       const cardInstruction = createElement({
@@ -56,7 +57,7 @@ class BirdCard {
         cardImage,
         cardTitle,
         cardSubtitle,
-        this.audioPlayer.container,
+        this.audioPlayer.render(birdData.audio),
         cardDescription
       );
     }

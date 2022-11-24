@@ -1,29 +1,25 @@
 import './audioPlayer.scss';
 
 import createElement from '../../../../../utils/createElement';
-import clearContainer from '../../../../../utils/clearContainer';
 
 class AudioPlayer {
-  container;
+  audio;
+
+  playButton;
+
+  progressBar;
+
+  currentTime;
+
+  audioDuration;
 
   constructor() {
-    this.container = createElement({
-      tagName: 'div',
-      attributes: { class: 'audio-player' },
-    });
-
-    this.render();
-  }
-
-  render = () => {
-    clearContainer(this.container);
-
-    const playButton = createElement({
+    this.playButton = createElement({
       tagName: 'button',
       attributes: { class: 'audio-player__button' },
       children: ['►'],
     });
-    const progressBar = createElement({
+    this.progressBar = createElement({
       tagName: 'input',
       attributes: {
         class: 'audio-player__progress',
@@ -33,21 +29,103 @@ class AudioPlayer {
         max: '100',
       },
     });
-    const currentTime = createElement({
+    this.currentTime = createElement({
       tagName: 'span',
-      children: ['00:00/'],
+      children: ['00:00'],
     });
-    const audioDuration = createElement({
+    this.audioDuration = createElement({
       tagName: 'span',
       children: ['00:00'],
     });
 
-    this.container.append(playButton, progressBar, currentTime, audioDuration);
+    this.audio = new Audio();
+    this.addListeners();
+  }
+
+  showAudioProgress = () => {
+    const minutes = Math.floor(this.audio.currentTime / 60);
+    const seconds = Math.floor(this.audio.currentTime % 60);
+    const currentMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    const currentSeconds = seconds < 10 ? `0${seconds}` : seconds;
+
+    this.currentTime.textContent = `${currentMinutes}:${currentSeconds}`;
+
+    if (this.progressBar instanceof HTMLInputElement) {
+      this.progressBar.value = `${
+        Math.floor(this.audio.currentTime) / (Math.floor(this.audio.duration) / 100) || 0
+      }`;
+      this.progressBar.style.background = `
+        linear-gradient(to right, #00bc8c 0%, #00bc8c ${this.progressBar.value}%, #e5e5e5 ${this.progressBar.value}%, #e5e5e5 100%)
+      `;
+    }
   };
 
-  get() {
-    return this.container;
-  }
+  changeAudioTime = () => {
+    if (this.progressBar instanceof HTMLInputElement)
+      this.audio.currentTime = this.audio.duration * (+this.progressBar.value / 100);
+  };
+
+  addListeners = () => {
+    this.playButton.addEventListener('click', () => {
+      if (this.audio.paused) {
+        this.audio.play();
+        this.playButton.textContent = '❚❚';
+      } else {
+        this.audio.pause();
+        this.playButton.textContent = '►';
+      }
+    });
+
+    this.audio.addEventListener('loadedmetadata', () => {
+      const minutes = Math.floor(this.audio.duration / 60);
+      const seconds = Math.floor(this.audio.duration % 60);
+      const currentMinutes = minutes < 10 ? `0${minutes}` : minutes;
+      const currentSeconds = seconds < 10 ? `0${seconds}` : seconds;
+
+      this.audioDuration.textContent = `${currentMinutes}:${currentSeconds}`;
+    });
+
+    this.audio.addEventListener('ended', () => {
+      this.audio.currentTime = 0;
+      this.playButton.textContent = '►';
+    });
+
+    this.audio.addEventListener('timeupdate', this.showAudioProgress);
+
+    this.progressBar.addEventListener('pointerdown', () => {
+      this.audio.removeEventListener('timeupdate', this.showAudioProgress);
+
+      this.progressBar.addEventListener('input', () => {
+        if (this.progressBar instanceof HTMLInputElement) {
+          this.progressBar.style.background = `
+            linear-gradient(to right, #00bc8c 0%, #00bc8c ${this.progressBar.value}%, #e5e5e5 ${this.progressBar.value}%, #e5e5e5 100%)
+          `;
+        }
+      });
+
+      this.progressBar.addEventListener('pointerup', () => {
+        this.changeAudioTime();
+        this.audio.addEventListener('timeupdate', this.showAudioProgress);
+      });
+    });
+  };
+
+  render = (audioSrc: string) => {
+    const container = createElement({
+      tagName: 'div',
+      attributes: { class: 'audio-player' },
+    });
+
+    this.audio.src = audioSrc;
+    this.playButton.textContent = '►';
+
+    container.append(
+      this.playButton,
+      this.progressBar,
+      createElement({ tagName: 'div', children: [this.currentTime, ' / ', this.audioDuration] })
+    );
+    return container;
+  };
 }
 
 export default AudioPlayer;

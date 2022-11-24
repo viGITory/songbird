@@ -43,7 +43,7 @@ class QuizQuestion {
     this.container.append(
       !hasCorrectAnswer ? imageCover : birdImage,
       birdName,
-      this.audioPlayer.container
+      this.audioPlayer.render(birdData.audio)
     );
   };
 
