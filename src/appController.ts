@@ -32,6 +32,7 @@ class AppController {
 
   changeQuizCategory = () => {
     this.model.incrementQuizCategoryNum();
+    this.model.setRandomQuestionNum();
     this.model.resetAnswerCount();
     this.model.resetHasCorrectAnswer();
 

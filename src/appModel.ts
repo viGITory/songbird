@@ -20,6 +20,10 @@ class AppModel {
     };
   }
 
+  setRandomQuestionNum = () => {
+    this.appState.currentQuizQuestionNum = getRandomInteger(0, 5);
+  };
+
   getQuizQuestionData = () => {
     return this.birdsData[this.appState.currentQuizCategoryNum]!.birds[
       this.appState.currentQuizQuestionNum
