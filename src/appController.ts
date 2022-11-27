@@ -12,6 +12,7 @@ class AppController {
     this.model = model;
     this.view = view;
 
+    this.view.renderGallery(this.model.getBirdsData);
     this.render();
 
     this.view.quizPage.components.nextQuestionButton.bindEventHandler(this.changeQuizCategory);
@@ -56,8 +57,7 @@ class AppController {
 
       this.view.quizPage.components.nextQuestionButton.turnOn();
       this.view.quizPage.components.quizAnswers.markSuccessAnswer(answerNum);
-
-      this.view.quizPage.components.header.score.updateScore(this.model.appState.quizScore);
+      this.view.quizPage.components.score.updateScore(this.model.appState.quizScore);
 
       this.view.renderQuestion(
         this.model.getQuizQuestionData,

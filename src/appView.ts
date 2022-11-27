@@ -1,18 +1,31 @@
-import { IBirdData } from './types';
+import { IBirdsData, IBirdData } from './types';
 
 import QuizPage from './components/pages/quizPage/quizPage';
+import GalleryPage from './components/pages/galleryPage/galleryPage';
+
+import router from './utils/router';
 
 class AppView {
   root;
 
+  routes: { [key: string]: HTMLElement };
+
   quizPage;
+
+  galleryPage;
 
   constructor() {
     this.root = document.getElementById('root') as HTMLElement;
 
     this.quizPage = new QuizPage();
+    this.galleryPage = new GalleryPage();
 
-    this.root.append(this.quizPage.container);
+    this.routes = {
+      '/quiz': this.quizPage.container,
+      '/gallery': this.galleryPage.container,
+    };
+
+    this.addListeners();
   }
 
   renderCategories = (categories: string[], currentCategoryNum: number) => {
@@ -29,6 +42,19 @@ class AppView {
 
   renderBirdCard = (handler: () => IBirdData, isFirstAnswer: boolean) => {
     this.quizPage.components.birdCard.render(handler(), isFirstAnswer);
+  };
+
+  renderGallery = (handler: () => IBirdsData[]) => {
+    this.galleryPage.render(handler());
+  };
+
+  addListeners = () => {
+    window.addEventListener('load', () => {
+      router(this.routes);
+    });
+    window.addEventListener('hashchange', () => {
+      router(this.routes);
+    });
   };
 }
 

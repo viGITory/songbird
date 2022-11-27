@@ -20,6 +20,10 @@ class AppModel {
     };
   }
 
+  getBirdsData = () => {
+    return this.birdsData;
+  };
+
   setRandomQuestionNum = () => {
     this.appState.currentQuizQuestionNum = getRandomInteger(0, 5);
   };

@@ -8,6 +8,7 @@ import BirdCard from './components/birdCard/birdCard';
 import NextQuestionButton from './components/nextQuestionButton/nextQuestionButton';
 
 import createElement from '../../../utils/createElement';
+import QuizScore from './components/quizScore/quizScore';
 
 class QuizPage {
   container;
@@ -18,12 +19,15 @@ class QuizPage {
     this.container = createElement({ tagName: 'div', attributes: { class: 'quiz-page' } });
     this.components = {
       header: new Header(),
+      score: new QuizScore(),
       quizCategories: new QuizCategories(),
       quizQuestion: new QuizQuestion(),
       quizAnswers: new QuizAnswers(),
       birdCard: new BirdCard(),
       nextQuestionButton: new NextQuestionButton(),
     };
+
+    this.components.header.container.append(this.components.score.container);
 
     this.render();
   }

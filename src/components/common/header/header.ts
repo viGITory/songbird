@@ -12,7 +12,7 @@ class Header {
 
   score;
 
-  constructor() {
+  constructor(score = null) {
     this.container = createElement({
       tagName: 'header',
       attributes: { class: 'header' },
@@ -32,9 +32,13 @@ class Header {
       ],
     });
     this.mainNav = new MainNav();
-    this.score = new QuizScore();
 
-    this.container.append(this.mainNav.container, this.score.container);
+    this.container.append(this.mainNav.container);
+
+    if (score) {
+      this.score = new QuizScore();
+      this.container.append(this.score.container);
+    }
   }
 }
 

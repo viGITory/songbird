@@ -1,0 +1,71 @@
+.gallery-slider {
+  gap: 1rem;
+
+  &,
+  &__slides,
+  &__button {
+    display: flex;
+  }
+
+  &__slides-wrapper {
+    position: relative;
+    overflow: hidden;
+
+    border: 0.1rem solid #e5e5e5;
+    border-radius: 0.3rem;
+  }
+
+  &__slides {
+    height: 100%;
+    transition: transform 0.5s;
+
+    .bird-card {
+      min-width: 100%;
+      background-size: 0;
+      border: 0;
+
+      &__image {
+        aspect-ratio: 16/9;
+      }
+    }
+  }
+
+  &__slide-num {
+    position: absolute;
+    top: 2rem;
+    left: 4rem;
+    z-index: 1;
+
+    font-family: "Marck Script", cursive;
+    font-size: 8rem;
+    color: #fff;
+    text-shadow: 0 0 0.2rem #333;
+  }
+
+  &__button {
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    min-width: 4rem;
+
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+
+    svg {
+      fill: #e5e5e5;
+      transition: fill 0.2s;
+    }
+
+    &:hover {
+
+      svg {
+        fill: #333;
+      }
+    }
+  }
+}

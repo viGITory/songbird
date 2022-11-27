@@ -13,4 +13,9 @@ interface IBirdData {
   audio: string;
 }
 
-export { IHTMLElementProps, IBirdData };
+interface IBirdsData {
+  category: string;
+  birds: IBirdData[];
+}
+
+export { IHTMLElementProps, IBirdsData, IBirdData };
