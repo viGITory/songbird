@@ -1,5 +1,6 @@
 import { IBirdsData, IBirdData } from './types';
 
+import HomePage from './components/pages/homePage/homePage';
 import QuizPage from './components/pages/quizPage/quizPage';
 import GalleryPage from './components/pages/galleryPage/galleryPage';
 
@@ -10,6 +11,8 @@ class AppView {
 
   routes: { [key: string]: HTMLElement };
 
+  homePage;
+
   quizPage;
 
   galleryPage;
@@ -17,10 +20,12 @@ class AppView {
   constructor() {
     this.root = document.getElementById('root') as HTMLElement;
 
+    this.homePage = new HomePage();
     this.quizPage = new QuizPage();
     this.galleryPage = new GalleryPage();
 
     this.routes = {
+      '/': this.homePage.container,
       '/quiz': this.quizPage.container,
       '/gallery': this.galleryPage.container,
     };
