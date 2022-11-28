@@ -11,6 +11,8 @@
   }
 
   &__title {
+    display: flex;
+    flex-wrap: wrap;
     font-family: "Marck Script", cursive;
     font-size: 18rem;
     font-weight: 400;

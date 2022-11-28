@@ -1,13 +1,15 @@
 .quiz-score {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
 
-  font-family: "Marck Script", cursive;
-  font-size: 4rem;
   text-align: right;
 
   &__count {
     display: block;
     min-width: 4rem;
+
+    font-size: 2.4rem;
+    color: #00bc8c;
   }
 }

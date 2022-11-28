@@ -17,18 +17,19 @@
     flex-direction: column;
   }
 
+  &__instruction,
+  &__title,
+  &__description::first-letter {
+    font-size: 2.4rem;
+  }
+
   &__instruction {
     flex-grow: 1;
     align-items: center;
     justify-content: center;
 
+    font-weight: 400;
     text-align: center;
-  }
-
-  &__title,
-  &__subtitle,
-  &__description::first-letter {
-    font-size: 2.4rem;
   }
 
   &__title {
@@ -47,8 +48,6 @@
 
   &__subtitle {
     padding-bottom: 1rem;
-
-    font-family: "Marck Script", cursive;
     border-bottom: 0.1rem solid #e5e5e5;
   }
 
