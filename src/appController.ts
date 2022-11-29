@@ -48,6 +48,7 @@ class AppController {
     this.model.setRandomQuestionNum();
     this.model.resetAnswerCount();
     this.model.resetHasCorrectAnswer();
+    this.model.appState.checkedAnswers.clear();
 
     this.render();
 
@@ -70,15 +71,29 @@ class AppController {
   };
 
   checkQuizAnswer = (answerNum: number) => {
-    this.model.incrementAnswerCount();
+    if (
+      !this.model.appState.checkedAnswers.has(answerNum) &&
+      !this.model.appState.hasCorrectAnswer
+    ) {
+      this.model.incrementAnswerCount();
+
+      this.answerAudio.src = './assets/audio/fail-sound.wav';
+      this.answerAudio.play();
+
+      this.view.quizPage.components.quizAnswers.markErrorAnswer(answerNum);
+    }
+
+    this.model.appState.checkedAnswers.add(answerNum);
+    this.model.setCurrentAnswerNum(answerNum);
 
     if (answerNum === this.model.appState.currentQuizQuestionNum) {
       if (!this.model.appState.hasCorrectAnswer) {
         this.answerAudio.src = './assets/audio/win-sound.wav';
         this.answerAudio.play();
+
+        this.model.countQuizScore();
       }
 
-      this.model.countQuizScore();
       this.model.setHasCorrectAnswer();
 
       this.view.quizPage.components.nextQuestionButton.turnOn();
@@ -90,18 +105,6 @@ class AppController {
         this.model.appState.hasCorrectAnswer
       );
     }
-
-    if (
-      !this.model.appState.hasCorrectAnswer &&
-      !(answerNum === this.model.appState.currentQuizAnswerNum)
-    ) {
-      this.view.quizPage.components.quizAnswers.markErrorAnswer(answerNum);
-
-      this.answerAudio.src = './assets/audio/fail-sound.wav';
-      this.answerAudio.play();
-    }
-
-    this.model.setCurrentAnswerNum(answerNum);
 
     this.view.renderBirdCard(this.model.getBirdCardData, !(this.model.appState.answerCount > 0));
   };

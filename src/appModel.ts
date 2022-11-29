@@ -17,6 +17,8 @@ class AppModel {
       currentQuizQuestionNum: getRandomInteger(0, 5),
       currentQuizAnswerNum: 0,
       answerCount: 0,
+      checkedAnswers: new Set(),
+      maxAnswersCount: 6,
       hasCorrectAnswer: false,
     };
   }
@@ -82,11 +84,7 @@ class AppModel {
   };
 
   countQuizScore = () => {
-    const maxAnswers = 6;
-
-    if (this.appState.hasCorrectAnswer || this.appState.answerCount === maxAnswers) return;
-
-    this.appState.quizScore += maxAnswers - this.appState.answerCount;
+    this.appState.quizScore += this.appState.maxAnswersCount - this.appState.answerCount;
   };
 }
 
