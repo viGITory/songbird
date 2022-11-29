@@ -1,5 +1,6 @@
 import { IBirdsData, IBirdData } from './types';
 
+import Preloader from './components/common/preloader/preloader';
 import HomePage from './components/pages/homePage/homePage';
 import QuizPage from './components/pages/quizPage/quizPage';
 import ResultsPage from './components/pages/resultsPage/resultsPage';
@@ -12,6 +13,8 @@ class AppView {
 
   routes: { [key: string]: HTMLElement };
 
+  preloader;
+
   homePage;
 
   quizPage;
@@ -23,6 +26,7 @@ class AppView {
   constructor() {
     this.root = document.getElementById('root') as HTMLElement;
 
+    this.preloader = new Preloader();
     this.homePage = new HomePage();
     this.quizPage = new QuizPage();
     this.resultsPage = new ResultsPage();
@@ -35,6 +39,7 @@ class AppView {
       '/gallery': this.galleryPage.container,
     };
 
+    this.root.append(this.preloader.container);
     this.addListeners();
   }
 
@@ -64,7 +69,9 @@ class AppView {
 
   addListeners = () => {
     window.addEventListener('load', () => {
-      router(this.routes);
+      setTimeout(() => {
+        router(this.routes);
+      }, 2000);
     });
     window.addEventListener('hashchange', () => {
       router(this.routes);
