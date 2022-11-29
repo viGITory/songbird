@@ -2,6 +2,7 @@ import { IBirdsData, IBirdData } from './types';
 
 import HomePage from './components/pages/homePage/homePage';
 import QuizPage from './components/pages/quizPage/quizPage';
+import ResultsPage from './components/pages/resultsPage/resultsPage';
 import GalleryPage from './components/pages/galleryPage/galleryPage';
 
 import router from './utils/router';
@@ -15,6 +16,8 @@ class AppView {
 
   quizPage;
 
+  resultsPage;
+
   galleryPage;
 
   constructor() {
@@ -22,16 +25,22 @@ class AppView {
 
     this.homePage = new HomePage();
     this.quizPage = new QuizPage();
+    this.resultsPage = new ResultsPage();
     this.galleryPage = new GalleryPage();
 
     this.routes = {
       '/': this.homePage.container,
       '/quiz': this.quizPage.container,
+      '/results': this.resultsPage.container,
       '/gallery': this.galleryPage.container,
     };
 
     this.addListeners();
   }
+
+  changePage = () => {
+    router(this.routes);
+  };
 
   renderCategories = (categories: string[], currentCategoryNum: number) => {
     this.quizPage.components.quizCategories.render(categories, currentCategoryNum);

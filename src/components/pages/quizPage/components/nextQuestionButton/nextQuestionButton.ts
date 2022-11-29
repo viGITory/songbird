@@ -27,9 +27,9 @@ class NextQuestionButton {
     this.container.addEventListener('click', handler);
   };
 
-  get() {
-    return this.container;
-  }
+  removeEventHandler = (handler: () => void) => {
+    this.container.removeEventListener('click', handler);
+  };
 }
 
 export default NextQuestionButton;

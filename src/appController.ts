@@ -17,9 +17,20 @@ class AppController {
 
     this.view.quizPage.components.nextQuestionButton.bindEventHandler(this.changeQuizCategory);
     this.view.quizPage.components.quizAnswers.bindEventHandler(this.checkQuizAnswer);
+    this.view.resultsPage.bindEventHandler(this.startNewGame);
 
     this.answerAudio = new Audio();
   }
+
+  startNewGame = () => {
+    this.model.resetGame();
+    this.render();
+
+    this.view.quizPage.components.nextQuestionButton.removeEventHandler(this.goToResults);
+
+    this.view.quizPage.components.quizAnswers.bindEventHandler(this.checkQuizAnswer);
+    this.view.quizPage.components.nextQuestionButton.bindEventHandler(this.changeQuizCategory);
+  };
 
   render = () => {
     this.view.renderCategories(
@@ -29,6 +40,7 @@ class AppController {
     this.view.renderQuestion(this.model.getQuizQuestionData, this.model.appState.hasCorrectAnswer);
     this.view.renderAnswers(this.model.getQuizAnswers);
     this.view.renderBirdCard(this.model.getBirdCardData, !(this.model.appState.answerCount > 0));
+    this.view.quizPage.components.score.updateScore(this.model.appState.quizScore);
   };
 
   changeQuizCategory = () => {
@@ -41,6 +53,20 @@ class AppController {
 
     this.view.quizPage.components.quizAnswers.bindEventHandler(this.checkQuizAnswer);
     this.view.quizPage.components.nextQuestionButton.turnOff();
+
+    if (
+      this.model.appState.currentQuizCategoryNum ===
+      this.model.appState.quizCategories.length - 1
+    ) {
+      this.view.quizPage.components.nextQuestionButton.bindEventHandler(this.goToResults);
+    }
+  };
+
+  goToResults = () => {
+    window.location.hash = '/results';
+
+    this.view.resultsPage.render(this.model.appState.quizScore, this.model.appState.maxQuizScore);
+    this.view.changePage();
   };
 
   checkQuizAnswer = (answerNum: number) => {

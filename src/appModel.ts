@@ -11,6 +11,7 @@ class AppModel {
     this.birdsData = birdsData;
     this.appState = {
       quizScore: 0,
+      maxQuizScore: 30,
       quizCategories: this.birdsData.map((item) => item.category),
       currentQuizCategoryNum: 0,
       currentQuizQuestionNum: getRandomInteger(0, 5),
@@ -19,6 +20,16 @@ class AppModel {
       hasCorrectAnswer: false,
     };
   }
+
+  resetGame = () => {
+    this.appState.quizScore = 0;
+    this.appState.currentQuizCategoryNum = 0;
+    this.appState.currentQuizAnswerNum = 0;
+    this.appState.answerCount = 0;
+    this.appState.hasCorrectAnswer = false;
+
+    this.setRandomQuestionNum();
+  };
 
   getBirdsData = () => {
     return this.birdsData;
