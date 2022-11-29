@@ -41,6 +41,8 @@ class AppController {
     this.view.renderAnswers(this.model.getQuizAnswers);
     this.view.renderBirdCard(this.model.getBirdCardData, !(this.model.appState.answerCount > 0));
     this.view.quizPage.components.score.updateScore(this.model.appState.quizScore);
+    this.view.quizPage.components.nextQuestionButton.updateButtonText(this.model.appState.isFinish);
+    this.view.quizPage.components.nextQuestionButton.turnOff();
   };
 
   changeQuizCategory = () => {
@@ -92,6 +94,16 @@ class AppController {
         this.answerAudio.play();
 
         this.model.countQuizScore();
+      }
+
+      if (
+        this.model.appState.currentQuizCategoryNum ===
+        this.model.appState.quizCategories.length - 1
+      ) {
+        this.model.setIsFinishGame();
+        this.view.quizPage.components.nextQuestionButton.updateButtonText(
+          this.model.appState.isFinish
+        );
       }
 
       this.model.setHasCorrectAnswer();

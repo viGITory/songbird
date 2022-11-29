@@ -9,11 +9,12 @@ class NextQuestionButton {
     this.container = createElement({
       tagName: 'button',
       attributes: { class: 'next-question-button', type: 'button' },
-      children: ['Следующий вопрос'],
     });
-
-    this.turnOff();
   }
+
+  updateButtonText = (isFinish: boolean) => {
+    this.container.textContent = isFinish ? 'К результатам' : 'Следующий вопрос';
+  };
 
   turnOn = () => {
     this.container.removeAttribute('disabled');

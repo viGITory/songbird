@@ -20,6 +20,7 @@ class AppModel {
       checkedAnswers: new Set(),
       maxAnswersCount: 6,
       hasCorrectAnswer: false,
+      isFinish: false,
     };
   }
 
@@ -29,12 +30,17 @@ class AppModel {
     this.appState.currentQuizAnswerNum = 0;
     this.appState.answerCount = 0;
     this.appState.hasCorrectAnswer = false;
+    this.appState.isFinish = false;
 
     this.setRandomQuestionNum();
   };
 
   getBirdsData = () => {
     return this.birdsData;
+  };
+
+  setIsFinishGame = () => {
+    this.appState.isFinish = !this.appState.isFinish;
   };
 
   setRandomQuestionNum = () => {
