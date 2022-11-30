@@ -44,6 +44,7 @@ class AppView {
   }
 
   changePage = () => {
+    this.galleryPage.components.slider.stopAllAudio();
     router(this.routes);
   };
 
@@ -80,7 +81,7 @@ class AppView {
     });
     window.addEventListener('hashchange', () => {
       this.markCurrentRoute();
-      router(this.routes);
+      this.changePage();
     });
   };
 }
