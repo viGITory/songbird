@@ -13,6 +13,8 @@ class Header {
   score;
 
   constructor(score = null) {
+    this.mainNav = new MainNav();
+
     this.container = createElement({
       tagName: 'header',
       attributes: { class: 'header' },
@@ -29,11 +31,13 @@ class Header {
             }),
           ],
         }),
+        createElement({
+          tagName: 'nav',
+          attributes: { class: 'header__nav' },
+          children: [this.mainNav.container],
+        }),
       ],
     });
-    this.mainNav = new MainNav();
-
-    this.container.append(this.mainNav.container);
 
     if (score) {
       this.score = new QuizScore();

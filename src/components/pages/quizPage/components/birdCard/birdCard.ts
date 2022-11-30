@@ -23,11 +23,11 @@ class BirdCard {
 
     if (isFirstAnswer) {
       const cardInstruction = createElement({
-        tagName: 'p',
+        tagName: 'h3',
         attributes: { class: 'bird-card__instruction' },
         children: [
-          createElement({ tagName: 'p', children: ['Послушайте плеер.'] }),
-          createElement({ tagName: 'p', children: ['Выберите птицу из списка'] }),
+          createElement({ tagName: 'span', children: ['Послушайте плеер.'] }),
+          createElement({ tagName: 'span', children: ['Выберите птицу из списка'] }),
         ],
       });
 

@@ -32,7 +32,7 @@ class HomePage {
         ],
       }),
       createElement({
-        tagName: 'div',
+        tagName: 'nav',
         attributes: { class: 'home-page__nav' },
         children: [
           createElement({

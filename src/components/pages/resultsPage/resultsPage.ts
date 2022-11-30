@@ -63,7 +63,7 @@ class ResultsPage {
         children: [text],
       }),
       createElement({
-        tagName: 'div',
+        tagName: 'nav',
         attributes: { class: 'results-page__nav' },
         children: [dynamicButton, this.components.galleryButton],
       })

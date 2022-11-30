@@ -39,7 +39,7 @@ class GalleryPage {
         attributes: { class: 'gallery-page__category-button' },
         children: [
           createElement({
-            tagName: 'p',
+            tagName: 'span',
             attributes: { class: 'gallery-page__category-title' },
             children: [item.category],
           }),

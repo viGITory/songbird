@@ -22,6 +22,7 @@ class AudioPlayer {
           value: '0',
           min: '0',
           max: '100',
+          'aria-label': 'progress-bar',
         },
       }),
       currentTime: createElement({
