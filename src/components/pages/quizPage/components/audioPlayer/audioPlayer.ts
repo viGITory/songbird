@@ -5,38 +5,34 @@ import createElement from '../../../../../utils/createElement';
 class AudioPlayer {
   audio;
 
-  playButton;
-
-  progressBar;
-
-  currentTime;
-
-  audioDuration;
+  components;
 
   constructor() {
-    this.playButton = createElement({
-      tagName: 'button',
-      attributes: { class: 'audio-player__button' },
-      children: ['►'],
-    });
-    this.progressBar = createElement({
-      tagName: 'input',
-      attributes: {
-        class: 'audio-player__progress',
-        type: 'range',
-        value: '0',
-        min: '0',
-        max: '100',
-      },
-    });
-    this.currentTime = createElement({
-      tagName: 'span',
-      children: ['00:00'],
-    });
-    this.audioDuration = createElement({
-      tagName: 'span',
-      children: ['00:00'],
-    });
+    this.components = {
+      playButton: createElement({
+        tagName: 'button',
+        attributes: { class: 'audio-player__button' },
+        children: ['►'],
+      }),
+      progressBar: createElement({
+        tagName: 'input',
+        attributes: {
+          class: 'audio-player__progress',
+          type: 'range',
+          value: '0',
+          min: '0',
+          max: '100',
+        },
+      }),
+      currentTime: createElement({
+        tagName: 'span',
+        children: ['00:00'],
+      }),
+      audioDuration: createElement({
+        tagName: 'span',
+        children: ['00:00'],
+      }),
+    };
 
     this.audio = new Audio();
     this.addListeners();
@@ -45,7 +41,7 @@ class AudioPlayer {
   stopAudio = () => {
     this.audio.pause();
     this.audio.currentTime = 0;
-    this.playButton.textContent = '►';
+    this.components.playButton.textContent = '►';
   };
 
   showAudioProgress = () => {
@@ -54,31 +50,31 @@ class AudioPlayer {
     const currentMinutes = minutes < 10 ? `0${minutes}` : minutes;
     const currentSeconds = seconds < 10 ? `0${seconds}` : seconds;
 
-    this.currentTime.textContent = `${currentMinutes}:${currentSeconds}`;
+    this.components.currentTime.textContent = `${currentMinutes}:${currentSeconds}`;
 
-    if (this.progressBar instanceof HTMLInputElement) {
-      this.progressBar.value = `${
+    if (this.components.progressBar instanceof HTMLInputElement) {
+      this.components.progressBar.value = `${
         Math.floor(this.audio.currentTime) / (Math.floor(this.audio.duration) / 100) || 0
       }`;
-      this.progressBar.style.background = `
-        linear-gradient(to right, #00bc8c 0%, #00bc8c ${this.progressBar.value}%, #e5e5e5 ${this.progressBar.value}%, #e5e5e5 100%)
+      this.components.progressBar.style.background = `
+        linear-gradient(to right, #00bc8c 0%, #00bc8c ${this.components.progressBar.value}%, #e5e5e5 ${this.components.progressBar.value}%, #e5e5e5 100%)
       `;
     }
   };
 
   changeAudioTime = () => {
-    if (this.progressBar instanceof HTMLInputElement)
-      this.audio.currentTime = this.audio.duration * (+this.progressBar.value / 100);
+    if (this.components.progressBar instanceof HTMLInputElement)
+      this.audio.currentTime = this.audio.duration * (+this.components.progressBar.value / 100);
   };
 
   addListeners = () => {
-    this.playButton.addEventListener('click', () => {
+    this.components.playButton.addEventListener('click', () => {
       if (this.audio.paused) {
         this.audio.play();
-        this.playButton.textContent = '❚❚';
+        this.components.playButton.textContent = '❚❚';
       } else {
         this.audio.pause();
-        this.playButton.textContent = '►';
+        this.components.playButton.textContent = '►';
       }
     });
 
@@ -88,28 +84,28 @@ class AudioPlayer {
       const currentMinutes = minutes < 10 ? `0${minutes}` : minutes;
       const currentSeconds = seconds < 10 ? `0${seconds}` : seconds;
 
-      this.audioDuration.textContent = `${currentMinutes}:${currentSeconds}`;
+      this.components.audioDuration.textContent = `${currentMinutes}:${currentSeconds}`;
     });
 
     this.audio.addEventListener('ended', () => {
       this.audio.currentTime = 0;
-      this.playButton.textContent = '►';
+      this.components.playButton.textContent = '►';
     });
 
     this.audio.addEventListener('timeupdate', this.showAudioProgress);
 
-    this.progressBar.addEventListener('pointerdown', () => {
+    this.components.progressBar.addEventListener('pointerdown', () => {
       this.audio.removeEventListener('timeupdate', this.showAudioProgress);
 
-      this.progressBar.addEventListener('input', () => {
-        if (this.progressBar instanceof HTMLInputElement) {
-          this.progressBar.style.background = `
-            linear-gradient(to right, #00bc8c 0%, #00bc8c ${this.progressBar.value}%, #e5e5e5 ${this.progressBar.value}%, #e5e5e5 100%)
+      this.components.progressBar.addEventListener('input', () => {
+        if (this.components.progressBar instanceof HTMLInputElement) {
+          this.components.progressBar.style.background = `
+            linear-gradient(to right, #00bc8c 0%, #00bc8c ${this.components.progressBar.value}%, #e5e5e5 ${this.components.progressBar.value}%, #e5e5e5 100%)
           `;
         }
       });
 
-      this.progressBar.addEventListener('pointerup', () => {
+      this.components.progressBar.addEventListener('pointerup', () => {
         this.changeAudioTime();
         this.audio.addEventListener('timeupdate', this.showAudioProgress);
       });
@@ -123,12 +119,15 @@ class AudioPlayer {
     });
 
     this.audio.src = audioSrc;
-    this.playButton.textContent = '►';
+    this.components.playButton.textContent = '►';
 
     container.append(
-      this.playButton,
-      this.progressBar,
-      createElement({ tagName: 'div', children: [this.currentTime, ' / ', this.audioDuration] })
+      this.components.playButton,
+      this.components.progressBar,
+      createElement({
+        tagName: 'div',
+        children: [this.components.currentTime, ' / ', this.components.audioDuration],
+      })
     );
     return container;
   };
