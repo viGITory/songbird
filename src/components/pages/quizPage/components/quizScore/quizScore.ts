@@ -25,10 +25,6 @@ class QuizScore {
   updateScore = (score: number) => {
     this.score.textContent = `${score}`;
   };
-
-  get() {
-    return this.container;
-  }
 }
 
 export default QuizScore;

@@ -46,10 +46,6 @@ class QuizQuestion {
       this.audioPlayer.render(birdData.audio)
     );
   };
-
-  get() {
-    return this.container;
-  }
 }
 
 export default QuizQuestion;

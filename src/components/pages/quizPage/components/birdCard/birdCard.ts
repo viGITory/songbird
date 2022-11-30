@@ -62,10 +62,6 @@ class BirdCard {
       );
     }
   };
-
-  get() {
-    return this.container;
-  }
 }
 
 export default BirdCard;

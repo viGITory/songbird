@@ -51,10 +51,6 @@ class QuizAnswers {
       }
     });
   };
-
-  get() {
-    return this.container;
-  }
 }
 
 export default QuizAnswers;

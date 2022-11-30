@@ -27,10 +27,6 @@ class QuizCategories {
       this.container.append(category);
     });
   };
-
-  get() {
-    return this.container;
-  }
 }
 
 export default QuizCategories;
