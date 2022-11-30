@@ -42,6 +42,12 @@ class AudioPlayer {
     this.addListeners();
   }
 
+  stopAudio = () => {
+    this.audio.pause();
+    this.audio.currentTime = 0;
+    this.playButton.textContent = '►';
+  };
+
   showAudioProgress = () => {
     const minutes = Math.floor(this.audio.currentTime / 60);
     const seconds = Math.floor(this.audio.currentTime % 60);

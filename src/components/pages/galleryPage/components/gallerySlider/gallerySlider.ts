@@ -26,10 +26,13 @@ class GallerySlider {
 
   slideNum;
 
+  birdCards: BirdCard[];
+
   constructor() {
     this.translatePersent = 0;
     this.currentSlide = 1;
     this.slidesCount = 0;
+    this.birdCards = [];
 
     this.container = createElement({
       tagName: 'div',
@@ -67,11 +70,18 @@ class GallerySlider {
     birdsData.forEach((bird) => {
       const slide = new BirdCard();
       slide.render(bird, false);
+      this.birdCards.push(slide);
 
       this.slides.append(slide.container);
     });
 
     this.slidesCount = this.slides.children.length;
+  };
+
+  stopAllAudio = () => {
+    this.birdCards.forEach((card) => {
+      card.audioPlayer.stopAudio();
+    });
   };
 
   render = () => {
@@ -100,6 +110,8 @@ class GallerySlider {
 
       this.slideNum.textContent = `${this.currentSlide}`;
       this.slides.style.transform = `translateX(${this.translatePersent}%)`;
+
+      this.stopAllAudio();
     });
 
     this.nextButton.addEventListener('click', () => {
@@ -115,6 +127,8 @@ class GallerySlider {
 
       this.slideNum.textContent = `${this.currentSlide}`;
       this.slides.style.transform = `translateX(${this.translatePersent}%)`;
+
+      this.stopAllAudio();
     });
   };
 }
