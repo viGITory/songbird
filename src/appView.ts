@@ -67,6 +67,11 @@ class AppView {
     this.galleryPage.render(handler());
   };
 
+  markCurrentRoute = () => {
+    this.quizPage.components.header.mainNav.markCurrentRoute();
+    this.galleryPage.components.header.mainNav.markCurrentRoute();
+  };
+
   addListeners = () => {
     window.addEventListener('load', () => {
       setTimeout(() => {
@@ -74,6 +79,7 @@ class AppView {
       }, 2000);
     });
     window.addEventListener('hashchange', () => {
+      this.markCurrentRoute();
       router(this.routes);
     });
   };
