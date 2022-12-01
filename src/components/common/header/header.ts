@@ -33,7 +33,6 @@ class Header {
         }),
         createElement({
           tagName: 'nav',
-          attributes: { class: 'header__nav' },
           children: [this.mainNav.container],
         }),
       ],

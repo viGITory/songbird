@@ -37,7 +37,6 @@ class QuizPage {
       this.components.header.container,
       createElement({
         tagName: 'main',
-        attributes: { class: 'quiz-page__main' },
         children: [
           this.components.quizCategories.container,
           createElement({

@@ -25,7 +25,6 @@ class MainNav {
     Object.entries(routes).forEach(([route, name]) => {
       const navItem = createElement({
         tagName: 'li',
-        attributes: { class: 'main-nav__item' },
       });
       const navLink = createElement({
         tagName: 'a',
