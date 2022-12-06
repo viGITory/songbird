@@ -1,7 +1,7 @@
 import { IHTMLElementProps } from '../types';
 
 const createElement = (props: IHTMLElementProps): HTMLElement => {
-  const { tagName, attributes, children } = { ...props };
+  const { tagName, attributes, children } = props;
   const element = document.createElement(tagName);
 
   if (attributes) {
