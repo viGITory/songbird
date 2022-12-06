@@ -2,7 +2,7 @@ import './quizQuestion.scss';
 
 import { IBirdData } from '../../../../../types';
 
-import AudioPlayer from '../audioPlayer/audioPlayer';
+import AudioPlayer from '../../../../common/audioPlayer/audioPlayer';
 
 import createElement from '../../../../../utils/createElement';
 import clearContainer from '../../../../../utils/clearContainer';

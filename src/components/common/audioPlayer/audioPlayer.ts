@@ -1,6 +1,6 @@
 import './audioPlayer.scss';
 
-import createElement from '../../../../../utils/createElement';
+import createElement from '../../../utils/createElement';
 
 class AudioPlayer {
   audio;

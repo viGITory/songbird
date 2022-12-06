@@ -1,11 +1,11 @@
 import './birdCard.scss';
 
-import { IBirdData } from '../../../../../types';
+import { IBirdData } from '../../../types';
 
 import AudioPlayer from '../audioPlayer/audioPlayer';
 
-import createElement from '../../../../../utils/createElement';
-import clearContainer from '../../../../../utils/clearContainer';
+import createElement from '../../../utils/createElement';
+import clearContainer from '../../../utils/clearContainer';
 
 class BirdCard {
   container;

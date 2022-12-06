@@ -2,7 +2,7 @@ import './gallerySlider.scss';
 
 import { IBirdData } from '../../../../../types';
 
-import BirdCard from '../../../quizPage/components/birdCard/birdCard';
+import BirdCard from '../../../../common/birdCard/birdCard';
 
 import createElement from '../../../../../utils/createElement';
 import clearContainer from '../../../../../utils/clearContainer';

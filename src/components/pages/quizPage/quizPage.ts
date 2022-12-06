@@ -4,7 +4,7 @@ import Header from '../../common/header/header';
 import QuizCategories from './components/quizCategories/quizCategories';
 import QuizQuestion from './components/quizQuestion/quizQuestion';
 import QuizAnswers from './components/quizAnswers/quizAnswers';
-import BirdCard from './components/birdCard/birdCard';
+import BirdCard from '../../common/birdCard/birdCard';
 import NextQuestionButton from './components/nextQuestionButton/nextQuestionButton';
 
 import createElement from '../../../utils/createElement';
