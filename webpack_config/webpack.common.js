@@ -29,7 +29,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: 'Songbird',
-      favicon: ``,
+      favicon: `${paths.public}/favicon.svg`,
       template: `${paths.src}/template.html`,
       filename: 'index.html',
     }),
