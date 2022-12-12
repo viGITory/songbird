@@ -32,6 +32,11 @@ class QuizPage {
     this.render();
   }
 
+  stopAudio = () => {
+    this.components.quizQuestion.audioPlayer.stopAudio();
+    this.components.birdCard.audioPlayer.stopAudio();
+  };
+
   render = () => {
     this.container.append(
       this.components.header.container,

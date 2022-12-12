@@ -73,7 +73,7 @@ class GallerySlider {
     this.slidesCount = this.components.slides.children.length;
   };
 
-  stopAllAudio = () => {
+  stopAudio = () => {
     this.birdCards.forEach((card) => {
       card.audioPlayer.stopAudio();
     });
@@ -110,7 +110,7 @@ class GallerySlider {
       this.components.slideNum.textContent = `${this.currentSlide}`;
       this.components.slides.style.transform = `translateX(${this.translatePersent}%)`;
 
-      this.stopAllAudio();
+      this.stopAudio();
     });
 
     this.components.nextButton.addEventListener('click', () => {
@@ -127,7 +127,7 @@ class GallerySlider {
       this.components.slideNum.textContent = `${this.currentSlide}`;
       this.components.slides.style.transform = `translateX(${this.translatePersent}%)`;
 
-      this.stopAllAudio();
+      this.stopAudio();
     });
   };
 }

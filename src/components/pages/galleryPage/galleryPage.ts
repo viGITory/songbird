@@ -25,6 +25,10 @@ class GalleryPage {
     };
   }
 
+  stopAudio = () => {
+    this.components.slider.stopAudio();
+  };
+
   render = (birdsData: IBirdsData[]) => {
     const categories = createElement({
       tagName: 'div',
@@ -64,7 +68,7 @@ class GalleryPage {
           [...categories.children].forEach((child) => child.removeAttribute('disabled'));
           categoryButton.setAttribute('disabled', '');
 
-          this.components.slider.stopAllAudio();
+          this.components.slider.stopAudio();
           this.components.slider.renderSlides(item.birds);
         }
       });

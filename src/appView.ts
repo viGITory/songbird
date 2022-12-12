@@ -43,11 +43,6 @@ class AppView {
     this.addListeners();
   }
 
-  changePage = () => {
-    this.galleryPage.components.slider.stopAllAudio();
-    router(this.routes);
-  };
-
   renderCategories = (categories: string[], currentCategoryNum: number) => {
     this.quizPage.components.quizCategories.render(categories, currentCategoryNum);
   };
@@ -71,6 +66,16 @@ class AppView {
   markCurrentRoute = () => {
     this.quizPage.components.header.mainNav.markCurrentRoute();
     this.galleryPage.components.header.mainNav.markCurrentRoute();
+  };
+
+  stopAllAudio = () => {
+    this.quizPage.stopAudio();
+    this.galleryPage.stopAudio();
+  };
+
+  changePage = () => {
+    this.stopAllAudio();
+    router(this.routes);
   };
 
   addListeners = () => {
