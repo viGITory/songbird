@@ -72,10 +72,6 @@ class QuizPage {
       })
     );
   };
-
-  get() {
-    return this.container;
-  }
 }
 
 export default QuizPage;
