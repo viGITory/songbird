@@ -6,9 +6,21 @@ import clearContainer from '../../../../../utils/clearContainer';
 class QuizAnswers {
   container;
 
+  audioAnswer;
+
   constructor() {
     this.container = createElement({ tagName: 'ul', attributes: { class: 'quiz-answers' } });
+    this.audioAnswer = new Audio();
   }
+
+  playAudioAnswer = (isRight: boolean) => {
+    this.audioAnswer.src = isRight
+      ? './assets/audio/win-sound.mp3'
+      : './assets/audio/fail-sound.mp3';
+
+    this.audioAnswer.currentTime = 0;
+    this.audioAnswer.play();
+  };
 
   render = (answers: string[]) => {
     clearContainer(this.container);

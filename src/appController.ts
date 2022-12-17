@@ -6,8 +6,6 @@ class AppController {
 
   view;
 
-  answerAudio;
-
   constructor(model: AppModel, view: AppView) {
     this.model = model;
     this.view = view;
@@ -18,8 +16,6 @@ class AppController {
     this.view.quizPage.components.nextQuestionButton.bindEventHandler(this.changeQuizCategory);
     this.view.quizPage.components.quizAnswers.bindEventHandler(this.checkQuizAnswer);
     this.view.resultsPage.bindEventHandler(this.startNewGame);
-
-    this.answerAudio = new Audio();
   }
 
   startNewGame = () => {
@@ -81,17 +77,11 @@ class AppController {
     if (!this.model.appState.hasCorrectAnswer) {
       if (!this.model.appState.checkedAnswers.has(answerNum)) {
         this.model.incrementAnswerCount();
-
-        this.answerAudio.src = './assets/audio/fail-sound.wav';
-        this.answerAudio.play();
       }
 
       if (answerNum === this.model.appState.currentQuizQuestionNum) {
         this.model.setHasCorrectAnswer();
         this.model.countQuizScore();
-
-        this.answerAudio.src = './assets/audio/win-sound.wav';
-        this.answerAudio.play();
 
         this.view.quizPage.components.nextQuestionButton.turnOn();
         this.view.quizPage.components.quizAnswers.markSuccessAnswer(answerNum);
@@ -103,6 +93,12 @@ class AppController {
         );
       } else {
         this.view.quizPage.components.quizAnswers.markErrorAnswer(answerNum);
+      }
+
+      if (!this.model.appState.checkedAnswers.has(answerNum)) {
+        this.view.quizPage.components.quizAnswers.playAudioAnswer(
+          this.model.appState.hasCorrectAnswer
+        );
       }
 
       this.model.appState.checkedAnswers.add(answerNum);
