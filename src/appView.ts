@@ -5,6 +5,7 @@ import HomePage from './components/pages/homePage/homePage';
 import QuizPage from './components/pages/quizPage/quizPage';
 import ResultsPage from './components/pages/resultsPage/resultsPage';
 import GalleryPage from './components/pages/galleryPage/galleryPage';
+import NotFoundPage from './components/pages/404/404';
 
 import router from './utils/router';
 
@@ -23,6 +24,8 @@ class AppView {
 
   galleryPage;
 
+  notFoundPage;
+
   constructor() {
     this.root = document.getElementById('root') as HTMLElement;
 
@@ -31,12 +34,14 @@ class AppView {
     this.quizPage = new QuizPage();
     this.resultsPage = new ResultsPage();
     this.galleryPage = new GalleryPage();
+    this.notFoundPage = new NotFoundPage();
 
     this.routes = {
       '/': this.homePage.container,
       '/quiz': this.quizPage.container,
       '/results': this.resultsPage.container,
       '/gallery': this.galleryPage.container,
+      '/404': this.notFoundPage.container,
     };
 
     this.root.append(this.preloader.container);
