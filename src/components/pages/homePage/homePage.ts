@@ -40,6 +40,7 @@ class HomePage {
             attributes: { class: 'home-page__button', href: '#/quiz' },
             children: ['К игре'],
           }),
+          createElement({ tagName: 'span', attributes: { class: 'nav-separator' } }),
           createElement({
             tagName: 'a',
             attributes: { class: 'home-page__button', href: '#/gallery' },

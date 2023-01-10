@@ -1,48 +1,70 @@
 .home-page {
   flex-direction: column;
-  gap: 2rem;
-  align-items: center;
   justify-content: center;
   padding: 2rem;
 
+  background-image: url("assets/feather-with-bird.svg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: contain;
+
   &,
-  &__title {
+  &__nav {
     display: flex;
+    align-items: center;
   }
 
   &__title {
-    display: flex;
-    flex-wrap: wrap;
-    font-family: "Marck Script", cursive;
-    font-size: 16rem;
+    font-size: 8rem;
     font-weight: 400;
-    color: #f5f5f5;
   }
 
   &__title-end {
     color: #00bc8c;
   }
 
-  &__nav {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-  }
-
   &__button {
+    position: relative;
     padding: 1rem 2rem;
 
+    font-size: 2.4rem;
     color: inherit;
     text-align: center;
     text-decoration: none;
 
-    background-color: #f5f5f5;
-    border-radius: 0.3rem;
-    transition: color 0.2s, background-color 0.2s;
+    &::after {
+      position: absolute;
+      top: 50%;
+      width: 1rem;
+      height: 1rem;
+
+      content: "";
+      background-color: #e5e5e5;
+      border-radius: 50%;
+      transition: background-color 0.2s;
+      transform: translateY(-50%);
+    }
+
+    &:nth-of-type(1) {
+
+      &::after {
+        left: 0;
+      }
+    }
+
+    &:nth-of-type(2) {
+
+      &::after {
+        right: 0;
+      }
+    }
 
     &:hover {
-      color: #fff;
-      background-color: #00bc8c;
+
+      &::after {
+        background-color: #00bc8c;
+      }
     }
   }
 }

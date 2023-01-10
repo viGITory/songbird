@@ -65,7 +65,11 @@ class ResultsPage {
       createElement({
         tagName: 'nav',
         attributes: { class: 'results-page__nav' },
-        children: [dynamicButton, this.components.galleryButton],
+        children: [
+          dynamicButton,
+          createElement({ tagName: 'span', attributes: { class: 'nav-separator' } }),
+          this.components.galleryButton,
+        ],
       })
     );
   };

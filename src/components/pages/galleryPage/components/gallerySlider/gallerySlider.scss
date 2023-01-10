@@ -1,5 +1,6 @@
 .gallery-slider {
   gap: 1rem;
+  height: 100%;
 
   &,
   &__slides,
@@ -8,7 +9,6 @@
   }
 
   &__slides-wrapper {
-    position: relative;
     overflow: hidden;
 
     border: 0.1rem solid #e5e5e5;
@@ -21,25 +21,9 @@
 
     .bird-card {
       min-width: 100%;
-      background-size: 0;
+      background-image: none;
       border: 0;
-
-      &__image {
-        aspect-ratio: 16/9;
-      }
     }
-  }
-
-  &__slide-num {
-    position: absolute;
-    top: 2rem;
-    left: 4rem;
-    z-index: 1;
-
-    font-family: "Marck Script", cursive;
-    font-size: 8rem;
-    color: #fff;
-    text-shadow: 0 0 0.2rem #333;
   }
 
   &__button {

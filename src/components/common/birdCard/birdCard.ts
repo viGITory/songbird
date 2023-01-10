@@ -33,10 +33,6 @@ class BirdCard {
 
       this.container.append(cardInstruction);
     } else {
-      const cardImage = createElement({
-        tagName: 'img',
-        attributes: { class: 'bird-card__image', src: birdData.image, alt: birdData.name },
-      });
       const cardTitle = createElement({
         tagName: 'h3',
         attributes: { class: 'bird-card__title' },
@@ -47,6 +43,10 @@ class BirdCard {
         attributes: { class: 'bird-card__subtitle' },
         children: [birdData.species],
       });
+      const cardImage = createElement({
+        tagName: 'img',
+        attributes: { class: 'bird-card__image', src: birdData.image, alt: birdData.name },
+      });
       const cardDescription = createElement({
         tagName: 'p',
         attributes: { class: 'bird-card__description' },
@@ -54,10 +54,10 @@ class BirdCard {
       });
 
       this.container.append(
-        cardImage,
         cardTitle,
         cardSubtitle,
         this.audioPlayer.render(birdData.audio),
+        cardImage,
         cardDescription
       );
     }

@@ -13,9 +13,14 @@
     padding: 1.5rem 0;
 
     cursor: pointer;
+    transition: color 0.2s;
 
     &:not(:last-child) {
       border-bottom: 0.1rem solid #e5e5e5;
+    }
+
+    &:hover {
+      color: #00bc8c;
     }
   }
 

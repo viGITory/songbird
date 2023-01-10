@@ -30,10 +30,23 @@ body {
   font-weight: 400;
   color: #333;
 
-  background-color: #333;
-  background-image: url("assets/bg.svg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
+  background-color: #f5f5f5;
+}
+
+.nav-separator {
+  position: relative;
+  width: 0.1rem;
+  height: 5.2rem;
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.1rem;
+    height: 50%;
+
+    content: "";
+    background-color: #333;
+    transform: translate(-50%, -50%);
+  }
 }

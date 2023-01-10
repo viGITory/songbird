@@ -36,11 +36,6 @@ class GallerySlider {
         tagName: 'div',
         attributes: { class: 'gallery-slider__slides-wrapper' },
       }),
-      slideNum: createElement({
-        tagName: 'p',
-        attributes: { class: 'gallery-slider__slide-num' },
-        children: [`${this.currentSlide}`],
-      }),
       slides: createElement({
         tagName: 'div',
         attributes: { class: 'gallery-slider__slides' },
@@ -87,7 +82,7 @@ class GallerySlider {
       <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 1280 1280"><path d="M361.5 65.5c-2.7.8-5.3 1.4-5.6 1.5-.4 0-3.4 1.8-6.8 4.1-16.3 10.9-22.5 32.7-14.5 51 2.6 6.1 14.2 17.9 258.3 262.1L848.5 640 592.9 895.8c-244.1 244.2-255.7 256-258.3 262.1-9.5 21.8 1.2 47.4 23.4 55.7 6.9 2.6 21.9 2.4 29.1-.4 3-1.2 6.9-3.2 8.6-4.4 1.6-1.3 125.2-124.3 274.6-273.3 263.6-262.9 271.8-271.2 274.9-278 3.1-6.5 3.3-7.7 3.3-17.5 0-11.2-1.4-15.9-7.1-24.1-1.3-1.9-124.6-125.3-273.9-274.2C411 85.8 395.7 70.8 389.5 67.9c-8-3.8-19.9-4.8-28-2.4z"/></svg>
     `;
 
-    this.components.slidesWrapper.append(this.components.slideNum, this.components.slides);
+    this.components.slidesWrapper.append(this.components.slides);
     this.container.append(
       this.components.prevButton,
       this.components.slidesWrapper,
@@ -107,7 +102,6 @@ class GallerySlider {
         this.translatePersent = -(this.slidesCount - 1) * 100;
       }
 
-      this.components.slideNum.textContent = `${this.currentSlide}`;
       this.components.slides.style.transform = `translateX(${this.translatePersent}%)`;
 
       this.stopAudio();
@@ -124,7 +118,6 @@ class GallerySlider {
         this.translatePersent = 0;
       }
 
-      this.components.slideNum.textContent = `${this.currentSlide}`;
       this.components.slides.style.transform = `translateX(${this.translatePersent}%)`;
 
       this.stopAudio();
