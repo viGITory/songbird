@@ -68,7 +68,7 @@ class GalleryPage {
           [...categories.children].forEach((child) => child.removeAttribute('disabled'));
           categoryButton.setAttribute('disabled', '');
 
-          this.components.slider.stopAudio();
+          this.components.slider.resetSlider();
           this.components.slider.renderSlides(item.birds);
         }
       });

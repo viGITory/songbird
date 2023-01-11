@@ -22,8 +22,8 @@ class GallerySlider {
 
   constructor() {
     this.translatePersent = 0;
-    this.currentSlide = 1;
-    this.slidesCount = 0;
+    this.currentSlide = 0;
+    this.slidesCount = 6;
     this.birdCards = [];
 
     this.container = createElement({
@@ -39,6 +39,10 @@ class GallerySlider {
       slides: createElement({
         tagName: 'div',
         attributes: { class: 'gallery-slider__slides' },
+      }),
+      slidesPreview: createElement({
+        tagName: 'div',
+        attributes: { class: 'gallery-slider__slides-preview' },
       }),
       prevButton: createElement({
         tagName: 'button',
@@ -56,22 +60,46 @@ class GallerySlider {
 
   renderSlides = (birdsData: IBirdData[]) => {
     clearContainer(this.components.slides);
+    clearContainer(this.components.slidesPreview);
 
-    birdsData.forEach((bird) => {
+    birdsData.forEach((bird, index) => {
       const slide = new BirdCard();
+      const previewImage = createElement({
+        tagName: 'img',
+        attributes: {
+          class: 'gallery-slider__preview-image',
+          src: bird.image,
+        },
+      });
+
+      if (index === this.currentSlide) {
+        previewImage.classList.add('gallery-slider__preview-image--active');
+      }
+
       slide.render(bird, false);
       this.birdCards.push(slide);
 
+      this.components.slidesPreview.append(previewImage);
       this.components.slides.append(slide.container);
-    });
 
-    this.slidesCount = this.components.slides.children.length;
+      previewImage.addEventListener('click', () => {
+        this.currentSlide = index;
+        this.changeSlide();
+      });
+    });
   };
 
   stopAudio = () => {
     this.birdCards.forEach((card) => {
       card.audioPlayer.stopAudio();
     });
+  };
+
+  resetSlider = () => {
+    this.currentSlide = 0;
+
+    this.stopAudio();
+    this.changeSlide();
   };
 
   render = () => {
@@ -85,42 +113,46 @@ class GallerySlider {
     this.components.slidesWrapper.append(this.components.slides);
     this.container.append(
       this.components.prevButton,
-      this.components.slidesWrapper,
+      createElement({
+        tagName: 'div',
+        attributes: { class: 'gallery-slider__center' },
+        children: [this.components.slidesPreview, this.components.slidesWrapper],
+      }),
       this.components.nextButton
     );
+  };
+
+  changeSlide = () => {
+    if (this.currentSlide === this.slidesCount) {
+      this.currentSlide = 0;
+    }
+
+    if (this.currentSlide < 0) {
+      this.currentSlide = this.slidesCount - 1;
+    }
+
+    this.translatePersent = -this.currentSlide * 100;
+
+    [...this.components.slidesPreview.children].forEach((image, index) =>
+      this.currentSlide === index
+        ? image.classList.add('gallery-slider__preview-image--active')
+        : image.classList.remove('gallery-slider__preview-image--active')
+    );
+
+    this.components.slides.style.transform = `translateX(${this.translatePersent}%)`;
+
+    this.stopAudio();
   };
 
   addListeners = () => {
     this.components.prevButton.addEventListener('click', () => {
       this.currentSlide -= 1;
-
-      if (this.currentSlide > 1) this.translatePersent += 100;
-      if (this.currentSlide === 1) this.translatePersent = 0;
-
-      if (this.currentSlide < 1) {
-        this.currentSlide = this.slidesCount;
-        this.translatePersent = -(this.slidesCount - 1) * 100;
-      }
-
-      this.components.slides.style.transform = `translateX(${this.translatePersent}%)`;
-
-      this.stopAudio();
+      this.changeSlide();
     });
 
     this.components.nextButton.addEventListener('click', () => {
-      if (this.currentSlide <= this.slidesCount) {
-        this.currentSlide += 1;
-        this.translatePersent -= 100;
-      }
-
-      if (this.currentSlide > this.slidesCount) {
-        this.currentSlide = 1;
-        this.translatePersent = 0;
-      }
-
-      this.components.slides.style.transform = `translateX(${this.translatePersent}%)`;
-
-      this.stopAudio();
+      this.currentSlide += 1;
+      this.changeSlide();
     });
   };
 }
