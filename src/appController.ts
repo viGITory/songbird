@@ -36,6 +36,8 @@ class AppController {
     this.view.renderQuestion(this.model.getQuizQuestionData, this.model.appState.hasCorrectAnswer);
     this.view.renderAnswers(this.model.getQuizAnswers);
     this.view.renderBirdCard(this.model.getBirdCardData, !(this.model.appState.answerCount > 0));
+    this.view.renderBirdCardBackground(this.model.getCurrentCategoryImages);
+
     this.view.quizPage.components.score.updateScore(this.model.appState.quizScore);
     this.view.quizPage.components.nextQuestionButton.updateButtonText(this.model.appState.isFinish);
     this.view.quizPage.components.nextQuestionButton.turnOff();

@@ -64,6 +64,10 @@ class AppView {
     this.quizPage.components.birdCard.render(handler(), isFirstAnswer);
   };
 
+  renderBirdCardBackground = (handler: () => string[]) => {
+    this.quizPage.components.birdCard.renderBackground(handler());
+  };
+
   renderGallery = (handler: () => IBirdsData[]) => {
     this.galleryPage.render(handler());
   };

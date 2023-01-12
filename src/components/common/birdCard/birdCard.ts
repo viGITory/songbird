@@ -12,10 +12,27 @@ class BirdCard {
 
   audioPlayer;
 
+  background;
+
   constructor() {
     this.container = createElement({ tagName: 'article', attributes: { class: 'bird-card' } });
+    this.background = createElement({ tagName: 'div', attributes: { class: 'bird-card__bg' } });
+
     this.audioPlayer = new AudioPlayer();
   }
+
+  renderBackground = (imageSources: string[]) => {
+    clearContainer(this.background);
+
+    imageSources.forEach((item) => {
+      const img = createElement({
+        tagName: 'img',
+        attributes: { class: 'bird-card__bg-image', src: item },
+      });
+
+      this.background.append(img);
+    });
+  };
 
   render = (birdData: IBirdData, isFirstAnswer: boolean) => {
     clearContainer(this.container);
@@ -31,7 +48,7 @@ class BirdCard {
         ],
       });
 
-      this.container.append(cardInstruction);
+      this.container.append(this.background, cardInstruction);
     } else {
       const cardTitle = createElement({
         tagName: 'h3',
