@@ -12,8 +12,9 @@ class Header {
 
   score;
 
-  constructor(score = null) {
+  constructor(score: QuizScore | null = null) {
     this.mainNav = new MainNav();
+    this.score = score;
 
     this.container = createElement({
       tagName: 'header',
@@ -38,8 +39,7 @@ class Header {
       ],
     });
 
-    if (score) {
-      this.score = new QuizScore();
+    if (this.score) {
       this.container.append(this.score.container);
     }
   }

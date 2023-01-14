@@ -18,16 +18,13 @@ class QuizPage {
   constructor() {
     this.container = createElement({ tagName: 'div', attributes: { class: 'quiz-page' } });
     this.components = {
-      header: new Header(),
-      score: new QuizScore(),
+      header: new Header(new QuizScore()),
       quizCategories: new QuizCategories(),
       quizQuestion: new QuizQuestion(),
       quizAnswers: new QuizAnswers(),
       birdCard: new BirdCard(),
       nextQuestionButton: new NextQuestionButton(),
     };
-
-    this.components.header.container.append(this.components.score.container);
 
     this.render();
   }

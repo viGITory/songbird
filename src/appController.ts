@@ -38,7 +38,7 @@ class AppController {
     this.view.renderBirdCard(this.model.getBirdCardData, !(this.model.appState.answerCount > 0));
     this.view.renderBirdCardBackground(this.model.getCurrentCategoryImages);
 
-    this.view.quizPage.components.score.updateScore(this.model.appState.quizScore);
+    this.view.quizPage.components.header.score?.updateScore(this.model.appState.quizScore);
     this.view.quizPage.components.nextQuestionButton.updateButtonText(this.model.appState.isFinish);
     this.view.quizPage.components.nextQuestionButton.turnOff();
   };
@@ -87,7 +87,7 @@ class AppController {
 
         this.view.quizPage.components.nextQuestionButton.turnOn();
         this.view.quizPage.components.quizAnswers.markSuccessAnswer(answerNum);
-        this.view.quizPage.components.score.updateScore(this.model.appState.quizScore);
+        this.view.quizPage.components.header.score?.updateScore(this.model.appState.quizScore);
 
         this.view.renderQuestion(
           this.model.getQuizQuestionData,
