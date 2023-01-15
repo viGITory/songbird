@@ -69,6 +69,7 @@ class GallerySlider {
         attributes: {
           class: 'gallery-slider__preview-image',
           src: bird.image,
+          alt: bird.name,
         },
       });
 
