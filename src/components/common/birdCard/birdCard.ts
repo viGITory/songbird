@@ -21,13 +21,13 @@ class BirdCard {
     this.audioPlayer = new AudioPlayer();
   }
 
-  renderBackground = (imageSources: string[]) => {
+  renderBackground = (birdsData: IBirdData[]) => {
     clearContainer(this.background);
 
-    imageSources.forEach((item) => {
+    birdsData.forEach((item) => {
       const img = createElement({
         tagName: 'img',
-        attributes: { class: 'bird-card__bg-image', src: item },
+        attributes: { class: 'bird-card__bg-image', src: item.image, alt: item.name },
       });
 
       this.background.append(img);

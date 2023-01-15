@@ -53,8 +53,8 @@ class AppModel {
     ]!;
   };
 
-  getCurrentCategoryImages = () => {
-    return this.birdsData[this.appState.currentQuizCategoryNum]!.birds.map((item) => item.image);
+  getCurrentCategoryBirds = () => {
+    return this.birdsData[this.appState.currentQuizCategoryNum]!.birds;
   };
 
   getQuizAnswers = () => {
