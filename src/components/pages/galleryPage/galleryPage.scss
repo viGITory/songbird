@@ -31,8 +31,6 @@
   }
 
   &__category-button {
-    overflow: hidden;
-
     font-family: inherit;
     font-size: 1.4rem;
     color: inherit;
@@ -65,40 +63,16 @@
     }
   }
 
-  &__category-button:disabled &__category-title,
-  &__category-button:hover &__category-title {
-
-    &::after {
-      background-color: #00bc8c;
-    }
-  }
-
   &__category-button:disabled &__category-image,
   &__category-button:hover &__category-image {
     opacity: 1;
   }
 
   &__category-title {
-    position: relative;
     align-items: center;
     justify-content: center;
     min-height: 3rem;
     padding: 0 3rem;
-
-    &::after {
-      position: absolute;
-      top: 50%;
-      left: 1rem;
-      width: 1rem;
-      height: 1rem;
-
-      content: "";
-      background-color: #e5e5e5;
-      border-radius: 50%;
-
-      transition: background-color 0.2s;
-      transform: translateY(-50%);
-    }
   }
 
   &__category-image {

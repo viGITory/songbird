@@ -80,7 +80,7 @@ class ResultsPage {
         attributes: { class: 'results-page__nav' },
         children: [
           dynamicButton,
-          createElement({ tagName: 'span', attributes: { class: 'nav-separator' } }),
+          createElement({ tagName: 'span', attributes: { class: 'results-page__nav-separator' } }),
           this.components.galleryButton,
         ],
       })

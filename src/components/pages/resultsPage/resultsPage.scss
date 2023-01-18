@@ -16,7 +16,6 @@
 
   &__text,
   &__button {
-    font-size: 2.4rem;
     text-align: center;
   }
 
@@ -39,7 +38,11 @@
   }
 
   &__text {
-    margin-bottom: 1rem;
+    font-size: 2.4rem;
+  }
+
+  &__nav {
+    margin-top: 1rem;
   }
 
   &__button {
@@ -47,7 +50,6 @@
     padding: 1rem 2rem;
 
     color: inherit;
-    color: #333;
     text-decoration: none;
 
     border-radius: 0.3rem;
@@ -60,7 +62,6 @@
       height: 1rem;
 
       content: "";
-      background-color: #e5e5e5;
       border-radius: 50%;
       transition: background-color 0.2s;
       transform: translateY(-50%);
@@ -86,5 +87,15 @@
         background-color: #00bc8c;
       }
     }
+  }
+
+  &__nav-separator {
+    width: 1.5rem;
+    height: 1.5rem;
+
+    background-image: url("assets/music-note-2.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
   }
 }

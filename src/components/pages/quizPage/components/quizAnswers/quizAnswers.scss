@@ -13,15 +13,16 @@
     padding: 1.5rem 0;
 
     cursor: pointer;
-    transition: color 0.2s;
 
     &:not(:last-child) {
       border-bottom: 0.1rem solid #e5e5e5;
     }
+  }
 
-    &:hover {
-      color: #00bc8c;
-    }
+  // stylelint-disable selector-class-pattern
+
+  &__item:hover:not(.quiz-answers__item--success):not(.quiz-answers__item--error) &__indicator {
+    background-color: #e5e5e5;
   }
 
   &__item--success &__indicator {
@@ -36,9 +37,8 @@
     width: 1rem;
     height: 1rem;
 
-    background-color: #e5e5e5;
+    background-color: #f5f5f5;
     border-radius: 50%;
-
     transition: background-color 0.2s;
   }
 }
