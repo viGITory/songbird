@@ -7,9 +7,46 @@
   padding: 1rem 0;
 
   &__logo {
+    position: relative;
+
     font-size: 3.2rem;
     color: inherit;
     text-decoration: none;
+
+    &::before,
+    &::after {
+      position: absolute;
+
+      pointer-events: none;
+      content: "";
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+
+      animation-iteration-count: infinite;
+    }
+
+    &::before {
+      top: 1.45rem;
+      right: -1.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+
+      background-image: url("assets/music-note-1.svg");
+      animation-name: music-note-1;
+      animation-duration: 7s;
+    }
+
+    &::after {
+      top: 1.2rem;
+      right: -3.5rem;
+      width: 2rem;
+      height: 2rem;
+
+      background-image: url("assets/music-note-2.svg");
+      animation-name: music-note-2;
+      animation-duration: 10s;
+    }
   }
 
   &__logo-end {

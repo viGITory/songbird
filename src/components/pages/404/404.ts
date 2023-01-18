@@ -19,7 +19,20 @@ class NotFoundPage {
       createElement({
         tagName: 'h1',
         attributes: { class: 'not-found-page__title' },
-        children: ['Страница не существует'],
+        children: [
+          createElement({
+            tagName: 'span',
+            attributes: { class: 'not-found-page__title-wrapper' },
+            children: [
+              ...[...'404'].map((char) =>
+                createElement({
+                  tagName: 'span',
+                  children: [char],
+                })
+              ),
+            ],
+          }),
+        ],
       }),
       createElement({
         tagName: 'a',

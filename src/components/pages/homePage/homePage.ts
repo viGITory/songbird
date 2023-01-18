@@ -22,12 +22,20 @@ class HomePage {
         children: [
           createElement({
             tagName: 'span',
+            attributes: { class: 'home-page__title-left' },
             children: ['Song'],
           }),
           createElement({
             tagName: 'span',
-            attributes: { class: 'home-page__title-end' },
-            children: ['Bird'],
+            attributes: { class: 'home-page__title-right' },
+            children: [
+              ...[...'Bird'].map((char) =>
+                createElement({
+                  tagName: 'span',
+                  children: [char],
+                })
+              ),
+            ],
           }),
         ],
       }),

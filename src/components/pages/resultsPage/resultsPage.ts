@@ -40,21 +40,33 @@ class ResultsPage {
 
     const dynamicButton =
       quizScore < maxQuizScore ? this.components.quizButton : this.components.homeButton;
+
     const text = `Вы набрали ${
       quizScore < maxQuizScore
         ? `${quizScore} из 30 возможных баллов`
         : 'максимальное количество баллов!'
     }`;
 
-    if (quizScore === maxQuizScore) {
-      const title = createElement({
-        tagName: 'p',
-        attributes: { class: 'results-page__title' },
-        children: ['Поздравляем!'],
-      });
-
-      this.container.append(title);
-    }
+    const title =
+      quizScore === maxQuizScore
+        ? createElement({
+            tagName: 'p',
+            attributes: { class: 'results-page__title' },
+            children: [
+              createElement({
+                tagName: 'span',
+                attributes: { class: 'results-page__title-wrapper' },
+                children: [
+                  'Поздравляем',
+                  createElement({
+                    tagName: 'span',
+                    children: ['!'],
+                  }),
+                ],
+              }),
+            ],
+          })
+        : '';
 
     this.container.append(
       createElement({
@@ -62,6 +74,7 @@ class ResultsPage {
         attributes: { class: 'results-page__text' },
         children: [text],
       }),
+      title,
       createElement({
         tagName: 'nav',
         attributes: { class: 'results-page__nav' },

@@ -25,6 +25,7 @@
     min-width: min-content;
     min-width: 17rem;
     max-width: 17rem;
+    overflow: hidden;
 
     list-style: none;
   }
@@ -40,6 +41,28 @@
     background-color: #fff;
     border: 0.1rem solid #e5e5e5;
     border-radius: 0.3rem;
+
+    animation: slide-right 0.2s;
+
+    &:nth-child(2) {
+      animation-duration: 0.4s;
+    }
+
+    &:nth-child(3) {
+      animation-duration: 0.6s;
+    }
+
+    &:nth-child(4) {
+      animation-duration: 0.8s;
+    }
+
+    &:nth-child(5) {
+      animation-duration: 1s;
+    }
+
+    &:nth-child(6) {
+      animation-duration: 1.2s;
+    }
   }
 
   &__category-button:disabled &__category-title,

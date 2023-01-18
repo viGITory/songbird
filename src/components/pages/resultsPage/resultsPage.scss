@@ -21,11 +21,20 @@
   }
 
   &__title {
+    overflow: hidden;
+
     font-size: 8rem;
     font-weight: 400;
 
-    &::first-letter {
-      color: #00bc8c;
+    animation: slide-bottom 0.5s;
+  }
+
+  &__title-wrapper {
+    display: flex;
+    animation: slide-top 0.5s;
+
+    span {
+      animation: flip 0.5s 1s;
     }
   }
 

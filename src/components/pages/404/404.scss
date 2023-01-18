@@ -11,9 +11,21 @@
   background-size: contain;
 
   &__title {
-    font-size: 4rem;
+    overflow: hidden;
+    font-size: 8rem;
     font-weight: 400;
     text-align: center;
+
+    animation: slide-bottom 0.5s;
+
+    span:nth-child(2) {
+      animation: flip 0.5s 1s;
+    }
+  }
+
+  &__title-wrapper {
+    display: flex;
+    animation: slide-top 0.5s;
   }
 
   &__button {
